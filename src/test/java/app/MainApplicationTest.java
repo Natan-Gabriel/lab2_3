@@ -35,7 +35,7 @@ public class MainApplicationTest {
         NotaXMLRepo notaXMLRepository = new NotaXMLRepo(filenameNota);
         Service service = new Service(studentXMLRepository, studentValidator, temaXMLRepository, temaValidator, notaXMLRepository, notaValidator);
 
-        Student st= new Student("112","112",937,"112");
+        Student st= new Student("100","ana",937,"a@y.com");
         Student res=service.addStudent(st);
         System.out.println("st:"+st);
         System.out.println("res:"+res);
