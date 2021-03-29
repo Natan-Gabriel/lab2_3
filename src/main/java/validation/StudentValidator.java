@@ -2,6 +2,8 @@ package validation;
 
 import domain.Student;
 
+import java.util.regex.Pattern;
+
 public class StudentValidator implements Validator<Student> {
 
     /**
@@ -11,6 +13,9 @@ public class StudentValidator implements Validator<Student> {
      */
     @Override
     public void validate(Student entity) throws ValidationException {
+        String regex="^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$";
+        Pattern pattern = Pattern.compile(regex);
+
         if(entity.getID().equals("")){
             throw new ValidationException("Id incorect!");
         }
@@ -32,5 +37,8 @@ public class StudentValidator implements Validator<Student> {
         if(entity.getEmail().equals("")){
             throw new ValidationException("Email incorect!");
         }
+//        if(!pattern.matcher(entity.getEmail()).matches()){
+//            throw new ValidationException("Email format incorect!");
+//        }
     }
 }
