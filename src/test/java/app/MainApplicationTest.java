@@ -9,9 +9,8 @@ import service.Service;
 import validation.NotaValidator;
 import validation.StudentValidator;
 import validation.TemaValidator;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertEquals;
+
+import static org.junit.Assert.*;
 
 public class MainApplicationTest {
 
@@ -30,12 +29,13 @@ public class MainApplicationTest {
         NotaXMLRepo notaXMLRepository = new NotaXMLRepo(filenameNota);
         Service service = new Service(studentXMLRepository, studentValidator, temaXMLRepository, temaValidator, notaXMLRepository, notaValidator);
 
-        Student st= new Student("100","ana",937,"a@y.com");
+        Student st= new Student("100","ana",937,"a@yahoo.com");
         Student res=service.addStudent(st);
         System.out.println("st:"+st);
         System.out.println("res:"+res);
 
-        assertEquals(res.getID(), st.getID());
+        //assertEquals(res.getID(), st.getID());
+        assertNotNull(service.findStudent(st.getID()));
     }
 
     @Test
@@ -55,7 +55,7 @@ public class MainApplicationTest {
         Service service = new Service(studentXMLRepository, studentValidator, temaXMLRepository, temaValidator, notaXMLRepository, notaValidator);
         boolean aux=true;
         try {
-            Student st = new Student("101", "ana", -10, "a@y.com");
+            Student st = new Student("101", "ana", -10, "a@yahoo.com");
             Student res = service.addStudent(st);
             System.out.println("st:" + st);
             System.out.println("res:" + res);
@@ -85,7 +85,7 @@ public class MainApplicationTest {
         Service service = new Service(studentXMLRepository, studentValidator, temaXMLRepository, temaValidator, notaXMLRepository, notaValidator);
         boolean aux=true;
         try {
-            Student st = new Student(null, "ana", 937, "a@y.com");
+            Student st = new Student(null, "ana", 937, "a@yahoo.com");
             Student res = service.addStudent(st);
             System.out.println("st:" + st);
             System.out.println("res:" + res);
@@ -114,7 +114,7 @@ public class MainApplicationTest {
         Service service = new Service(studentXMLRepository, studentValidator, temaXMLRepository, temaValidator, notaXMLRepository, notaValidator);
         boolean aux=true;
         try {
-            Student st = new Student("", "ana", 937, "a@y.com");
+            Student st = new Student("", "ana", 937, "a@yahoo.com");
             Student res = service.addStudent(st);
             System.out.println("st:" + st);
             System.out.println("res:" + res);
@@ -144,7 +144,7 @@ public class MainApplicationTest {
         Service service = new Service(studentXMLRepository, studentValidator, temaXMLRepository, temaValidator, notaXMLRepository, notaValidator);
         boolean aux=true;
         try {
-            Student st = new Student("102", null, 937, "a@y.com");
+            Student st = new Student("102", null, 937, "a@yahoo.com");
             Student res = service.addStudent(st);
             System.out.println("st:" + st);
             System.out.println("res:" + res);
@@ -174,7 +174,7 @@ public class MainApplicationTest {
         Service service = new Service(studentXMLRepository, studentValidator, temaXMLRepository, temaValidator, notaXMLRepository, notaValidator);
         boolean aux=true;
         try {
-            Student st = new Student("103", "", 937, "a@y.com");
+            Student st = new Student("103", "", 937, "a@yahoo.com");
             Student res = service.addStudent(st);
             System.out.println("st:" + st);
             System.out.println("res:" + res);
@@ -292,12 +292,13 @@ public class MainApplicationTest {
         NotaXMLRepo notaXMLRepository = new NotaXMLRepo(filenameNota);
         Service service = new Service(studentXMLRepository, studentValidator, temaXMLRepository, temaValidator, notaXMLRepository, notaValidator);
 
-        Student st= new Student("a","ana",937,"a@y.com");
+        Student st= new Student("a","ana",937,"a@yahoo.com");
         Student res=service.addStudent(st);
         System.out.println("st:"+st);
         System.out.println("res:"+res);
 
-        assertEquals(res.getID(), st.getID());
+        //assertEquals(res.getID(), st.getID());
+        assertNotNull(service.findStudent(st.getID()));
     }
 
     @Test
@@ -315,12 +316,13 @@ public class MainApplicationTest {
         NotaXMLRepo notaXMLRepository = new NotaXMLRepo(filenameNota);
         Service service = new Service(studentXMLRepository, studentValidator, temaXMLRepository, temaValidator, notaXMLRepository, notaValidator);
 
-        Student st= new Student("200","a",937,"a@y.com");
+        Student st= new Student("200","a",937,"a@yahoo.com");
         Student res=service.addStudent(st);
         System.out.println("st:"+st);
         System.out.println("res:"+res);
 
-        assertEquals(res.getID(), st.getID());
+        //assertEquals(res.getID(), st.getID());
+        assertNotNull(service.findStudent(st.getID()));
     }
 
     @Test
@@ -340,7 +342,7 @@ public class MainApplicationTest {
         Service service = new Service(studentXMLRepository, studentValidator, temaXMLRepository, temaValidator, notaXMLRepository, notaValidator);
         boolean aux=true;
         try {
-            Student st = new Student("201", "ana", -1,"a@y.com");
+            Student st = new Student("201", "ana", -1,"a@yahoo.com");
             Student res = service.addStudent(st);
             System.out.println("st:" + st);
             System.out.println("res:" + res);
@@ -368,12 +370,13 @@ public class MainApplicationTest {
         NotaXMLRepo notaXMLRepository = new NotaXMLRepo(filenameNota);
         Service service = new Service(studentXMLRepository, studentValidator, temaXMLRepository, temaValidator, notaXMLRepository, notaValidator);
 
-        Student st= new Student("202","ana",0,"a@y.com");
+        Student st= new Student("202","ana",0,"a@yahoo.com");
         Student res=service.addStudent(st);
         System.out.println("st:"+st);
         System.out.println("res:"+res);
 
-        assertEquals(res.getID(), st.getID());
+        //assertEquals(res.getID(), st.getID());
+        assertNotNull(service.findStudent(st.getID()));
     }
 
     @Test
@@ -391,12 +394,13 @@ public class MainApplicationTest {
         NotaXMLRepo notaXMLRepository = new NotaXMLRepo(filenameNota);
         Service service = new Service(studentXMLRepository, studentValidator, temaXMLRepository, temaValidator, notaXMLRepository, notaValidator);
 
-        Student st= new Student("203","ana",1,"a@y.com");
+        Student st= new Student("203","ana",1,"a@yahoo.com");
         Student res=service.addStudent(st);
         System.out.println("st:"+st);
         System.out.println("res:"+res);
 
-        assertEquals(res.getID(), st.getID());
+        //assertEquals(res.getID(), st.getID());
+        assertNotNull(service.findStudent(st.getID()));
     }
 
     @Test
@@ -414,12 +418,13 @@ public class MainApplicationTest {
         NotaXMLRepo notaXMLRepository = new NotaXMLRepo(filenameNota);
         Service service = new Service(studentXMLRepository, studentValidator, temaXMLRepository, temaValidator, notaXMLRepository, notaValidator);
 
-        Student st= new Student("204","ana", Integer.MAX_VALUE-1,"a@y.com");
+        Student st= new Student("204","ana", Integer.MAX_VALUE-1,"a@yahoo.com");
         Student res=service.addStudent(st);
         System.out.println("st:"+st);
         System.out.println("res:"+res);
 
-        assertEquals(res.getID(), st.getID());
+        //assertEquals(res.getID(), st.getID());
+        assertNotNull(service.findStudent(st.getID()));
     }
 
     @Test
@@ -437,12 +442,13 @@ public class MainApplicationTest {
         NotaXMLRepo notaXMLRepository = new NotaXMLRepo(filenameNota);
         Service service = new Service(studentXMLRepository, studentValidator, temaXMLRepository, temaValidator, notaXMLRepository, notaValidator);
 
-        Student st= new Student("205","ana", Integer.MAX_VALUE,"a@y.com");
+        Student st= new Student("205","ana", Integer.MAX_VALUE,"a@yahoo.com");
         Student res=service.addStudent(st);
         System.out.println("st:"+st);
         System.out.println("res:"+res);
 
-        assertEquals(res.getID(), st.getID());
+        //assertEquals(res.getID(), st.getID());
+        assertNotNull(service.findStudent(st.getID()));
     }
 
     @Test
@@ -462,7 +468,7 @@ public class MainApplicationTest {
         Service service = new Service(studentXMLRepository, studentValidator, temaXMLRepository, temaValidator, notaXMLRepository, notaValidator);
         boolean aux=true;
         try {
-            Student st = new Student("206", "ana", -1,"@a.com");
+            Student st = new Student("206", "ana", 937,"@a.com");
             Student res = service.addStudent(st);
             System.out.println("st:" + st);
             System.out.println("res:" + res);
@@ -492,7 +498,7 @@ public class MainApplicationTest {
         Service service = new Service(studentXMLRepository, studentValidator, temaXMLRepository, temaValidator, notaXMLRepository, notaValidator);
         boolean aux=true;
         try {
-            Student st = new Student("207", "ana", -1,"a@.com");
+            Student st = new Student("207", "ana", 937,"a@.com");
             Student res = service.addStudent(st);
             System.out.println("st:" + st);
             System.out.println("res:" + res);
@@ -522,7 +528,7 @@ public class MainApplicationTest {
         Service service = new Service(studentXMLRepository, studentValidator, temaXMLRepository, temaValidator, notaXMLRepository, notaValidator);
         boolean aux=true;
         try {
-            Student st = new Student("208", "ana", -1,"a@a");
+            Student st = new Student("208", "ana", 937,"a@a");
             Student res = service.addStudent(st);
             System.out.println("st:" + st);
             System.out.println("res:" + res);
@@ -552,7 +558,7 @@ public class MainApplicationTest {
         Service service = new Service(studentXMLRepository, studentValidator, temaXMLRepository, temaValidator, notaXMLRepository, notaValidator);
         boolean aux=true;
         try {
-            Student st = new Student("209", "ana", -1,"aa.com");
+            Student st = new Student("209", "ana", 937,"aa.com");
             Student res = service.addStudent(st);
             System.out.println("st:" + st);
             System.out.println("res:" + res);
@@ -582,7 +588,7 @@ public class MainApplicationTest {
         Service service = new Service(studentXMLRepository, studentValidator, temaXMLRepository, temaValidator, notaXMLRepository, notaValidator);
         boolean aux=true;
         try {
-            Student st = new Student("210", "ana", -1,"a@-y.com");
+            Student st = new Student("210", "ana", 937,"a@-y.com");
             Student res = service.addStudent(st);
             System.out.println("st:" + st);
             System.out.println("res:" + res);
@@ -612,7 +618,7 @@ public class MainApplicationTest {
         Service service = new Service(studentXMLRepository, studentValidator, temaXMLRepository, temaValidator, notaXMLRepository, notaValidator);
         boolean aux=true;
         try {
-            Student st = new Student("211", "ana", -1,".com@y.com");
+            Student st = new Student("211", "ana", 937,".com@y.com");
             Student res = service.addStudent(st);
             System.out.println("st:" + st);
             System.out.println("res:" + res);
