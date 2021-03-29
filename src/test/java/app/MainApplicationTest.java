@@ -16,18 +16,13 @@ import static org.junit.Assert.assertEquals;
 public class MainApplicationTest {
 
     @Test
-    public void ec_1_addStudentValid() {
+    public void tc_1_addStudentValid() {
 
         StudentValidator studentValidator = new StudentValidator();
         TemaValidator temaValidator = new TemaValidator();
         String filenameStudent = "fisiere/Studenti.xml";
         String filenameTema = "fisiere/Teme.xml";
         String filenameNota = "fisiere/Note.xml";
-
-        //StudentFileRepository studentFileRepository = new StudentFileRepository(filenameStudent);
-        //TemaFileRepository temaFileRepository = new TemaFileRepository(filenameTema);
-        //NotaValidator notaValidator = new NotaValidator(studentFileRepository, temaFileRepository);
-        //NotaFileRepository notaFileRepository = new NotaFileRepository(filenameNota);
 
         StudentXMLRepo studentXMLRepository = new StudentXMLRepo(filenameStudent);
         TemaXMLRepo temaXMLRepository = new TemaXMLRepo(filenameTema);
@@ -39,16 +34,12 @@ public class MainApplicationTest {
         Student res=service.addStudent(st);
         System.out.println("st:"+st);
         System.out.println("res:"+res);
-//        rep = new Repository("FileParticipantsMaxAll.txt");
-//
-//        ctrl=new ParticipantController(rep);
-//        int noParticipantsMax= ctrl.getNumberOfParticipantWithMaxPointsReceived();
 
         assertEquals(res.getID(), st.getID());
     }
 
     @Test
-    public void ec_2_addStudentInvalid() {
+    public void tc_2_addStudentGroupInvalid() {
 
         StudentValidator studentValidator = new StudentValidator();
         TemaValidator temaValidator = new TemaValidator();
@@ -56,10 +47,6 @@ public class MainApplicationTest {
         String filenameTema = "fisiere/Teme.xml";
         String filenameNota = "fisiere/Note.xml";
 
-        //StudentFileRepository studentFileRepository = new StudentFileRepository(filenameStudent);
-        //TemaFileRepository temaFileRepository = new TemaFileRepository(filenameTema);
-        //NotaValidator notaValidator = new NotaValidator(studentFileRepository, temaFileRepository);
-        //NotaFileRepository notaFileRepository = new NotaFileRepository(filenameNota);
 
         StudentXMLRepo studentXMLRepository = new StudentXMLRepo(filenameStudent);
         TemaXMLRepo temaXMLRepository = new TemaXMLRepo(filenameTema);
@@ -68,7 +55,7 @@ public class MainApplicationTest {
         Service service = new Service(studentXMLRepository, studentValidator, temaXMLRepository, temaValidator, notaXMLRepository, notaValidator);
         boolean aux=true;
         try {
-            Student st = new Student("113", "113", -10, "113");
+            Student st = new Student("101", "ana", -10, "a@y.com");
             Student res = service.addStudent(st);
             System.out.println("st:" + st);
             System.out.println("res:" + res);
@@ -78,23 +65,563 @@ public class MainApplicationTest {
         catch(Exception e){
             aux=false;
         }
-//        rep = new Repository("FileParticipantsMaxAll.txt");
-//
-//        ctrl=new ParticipantController(rep);
-//        int noParticipantsMax= ctrl.getNumberOfParticipantWithMaxPointsReceived();
-
-//        assertEquals(res.getID(), st.getID());
         assertFalse(aux);
     }
 
+    @Test
+    public void tc_3_addStudentIDInvalid() {
 
-//    @Test
-//    public void tc_3_AllParticipantsOnlyOne() {
-//        rep = new Repository("FileParticipantsMaxOne.txt");
-//
-//        ctrl=new ParticipantController(rep);
-//        int noParticipantsMax= ctrl.getNumberOfParticipantWithMaxPointsReceived();
-//
-//        assertEquals(1, noParticipantsMax);
-//    }
+        StudentValidator studentValidator = new StudentValidator();
+        TemaValidator temaValidator = new TemaValidator();
+        String filenameStudent = "fisiere/Studenti.xml";
+        String filenameTema = "fisiere/Teme.xml";
+        String filenameNota = "fisiere/Note.xml";
+
+
+        StudentXMLRepo studentXMLRepository = new StudentXMLRepo(filenameStudent);
+        TemaXMLRepo temaXMLRepository = new TemaXMLRepo(filenameTema);
+        NotaValidator notaValidator = new NotaValidator(studentXMLRepository, temaXMLRepository);
+        NotaXMLRepo notaXMLRepository = new NotaXMLRepo(filenameNota);
+        Service service = new Service(studentXMLRepository, studentValidator, temaXMLRepository, temaValidator, notaXMLRepository, notaValidator);
+        boolean aux=true;
+        try {
+            Student st = new Student(null, "ana", 937, "a@y.com");
+            Student res = service.addStudent(st);
+            System.out.println("st:" + st);
+            System.out.println("res:" + res);
+
+        }
+        catch(Exception e){
+            aux=false;
+        }
+        assertFalse(aux);
+    }
+
+    @Test
+    public void tc_4_addStudentIDInvalid() {
+
+        StudentValidator studentValidator = new StudentValidator();
+        TemaValidator temaValidator = new TemaValidator();
+        String filenameStudent = "fisiere/Studenti.xml";
+        String filenameTema = "fisiere/Teme.xml";
+        String filenameNota = "fisiere/Note.xml";
+
+
+        StudentXMLRepo studentXMLRepository = new StudentXMLRepo(filenameStudent);
+        TemaXMLRepo temaXMLRepository = new TemaXMLRepo(filenameTema);
+        NotaValidator notaValidator = new NotaValidator(studentXMLRepository, temaXMLRepository);
+        NotaXMLRepo notaXMLRepository = new NotaXMLRepo(filenameNota);
+        Service service = new Service(studentXMLRepository, studentValidator, temaXMLRepository, temaValidator, notaXMLRepository, notaValidator);
+        boolean aux=true;
+        try {
+            Student st = new Student("", "ana", 937, "a@y.com");
+            Student res = service.addStudent(st);
+            System.out.println("st:" + st);
+            System.out.println("res:" + res);
+
+
+        }
+        catch(Exception e){
+            aux=false;
+        }
+        assertFalse(aux);
+    }
+
+    @Test
+    public void tc_5_addStudentNameInvalid() {
+
+        StudentValidator studentValidator = new StudentValidator();
+        TemaValidator temaValidator = new TemaValidator();
+        String filenameStudent = "fisiere/Studenti.xml";
+        String filenameTema = "fisiere/Teme.xml";
+        String filenameNota = "fisiere/Note.xml";
+
+
+        StudentXMLRepo studentXMLRepository = new StudentXMLRepo(filenameStudent);
+        TemaXMLRepo temaXMLRepository = new TemaXMLRepo(filenameTema);
+        NotaValidator notaValidator = new NotaValidator(studentXMLRepository, temaXMLRepository);
+        NotaXMLRepo notaXMLRepository = new NotaXMLRepo(filenameNota);
+        Service service = new Service(studentXMLRepository, studentValidator, temaXMLRepository, temaValidator, notaXMLRepository, notaValidator);
+        boolean aux=true;
+        try {
+            Student st = new Student("102", null, 937, "a@y.com");
+            Student res = service.addStudent(st);
+            System.out.println("st:" + st);
+            System.out.println("res:" + res);
+
+
+        }
+        catch(Exception e){
+            aux=false;
+        }
+        assertFalse(aux);
+    }
+
+    @Test
+    public void tc_6_addStudentNameInvalid() {
+
+        StudentValidator studentValidator = new StudentValidator();
+        TemaValidator temaValidator = new TemaValidator();
+        String filenameStudent = "fisiere/Studenti.xml";
+        String filenameTema = "fisiere/Teme.xml";
+        String filenameNota = "fisiere/Note.xml";
+
+
+        StudentXMLRepo studentXMLRepository = new StudentXMLRepo(filenameStudent);
+        TemaXMLRepo temaXMLRepository = new TemaXMLRepo(filenameTema);
+        NotaValidator notaValidator = new NotaValidator(studentXMLRepository, temaXMLRepository);
+        NotaXMLRepo notaXMLRepository = new NotaXMLRepo(filenameNota);
+        Service service = new Service(studentXMLRepository, studentValidator, temaXMLRepository, temaValidator, notaXMLRepository, notaValidator);
+        boolean aux=true;
+        try {
+            Student st = new Student("103", "", 937, "a@y.com");
+            Student res = service.addStudent(st);
+            System.out.println("st:" + st);
+            System.out.println("res:" + res);
+
+
+        }
+        catch(Exception e){
+            aux=false;
+        }
+        assertFalse(aux);
+    }
+
+    @Test
+    public void tc_7_addStudentEmailInvalid() {
+
+        StudentValidator studentValidator = new StudentValidator();
+        TemaValidator temaValidator = new TemaValidator();
+        String filenameStudent = "fisiere/Studenti.xml";
+        String filenameTema = "fisiere/Teme.xml";
+        String filenameNota = "fisiere/Note.xml";
+
+
+        StudentXMLRepo studentXMLRepository = new StudentXMLRepo(filenameStudent);
+        TemaXMLRepo temaXMLRepository = new TemaXMLRepo(filenameTema);
+        NotaValidator notaValidator = new NotaValidator(studentXMLRepository, temaXMLRepository);
+        NotaXMLRepo notaXMLRepository = new NotaXMLRepo(filenameNota);
+        Service service = new Service(studentXMLRepository, studentValidator, temaXMLRepository, temaValidator, notaXMLRepository, notaValidator);
+        boolean aux=true;
+        try {
+            Student st = new Student("104", "ana", 937,null);
+            Student res = service.addStudent(st);
+            System.out.println("st:" + st);
+            System.out.println("res:" + res);
+
+
+        }
+        catch(Exception e){
+            aux=false;
+        }
+        assertFalse(aux);
+    }
+
+    @Test
+    public void tc_8_addStudentEmailInvalid() {
+
+        StudentValidator studentValidator = new StudentValidator();
+        TemaValidator temaValidator = new TemaValidator();
+        String filenameStudent = "fisiere/Studenti.xml";
+        String filenameTema = "fisiere/Teme.xml";
+        String filenameNota = "fisiere/Note.xml";
+
+
+        StudentXMLRepo studentXMLRepository = new StudentXMLRepo(filenameStudent);
+        TemaXMLRepo temaXMLRepository = new TemaXMLRepo(filenameTema);
+        NotaValidator notaValidator = new NotaValidator(studentXMLRepository, temaXMLRepository);
+        NotaXMLRepo notaXMLRepository = new NotaXMLRepo(filenameNota);
+        Service service = new Service(studentXMLRepository, studentValidator, temaXMLRepository, temaValidator, notaXMLRepository, notaValidator);
+        boolean aux=true;
+        try {
+            Student st = new Student("105", "ana", 937,"ana");
+            Student res = service.addStudent(st);
+            System.out.println("st:" + st);
+            System.out.println("res:" + res);
+
+
+        }
+        catch(Exception e){
+            aux=false;
+        }
+        assertFalse(aux);
+    }
+
+    @Test
+    public void tc_9_addStudentEmailInvalid() {
+
+        StudentValidator studentValidator = new StudentValidator();
+        TemaValidator temaValidator = new TemaValidator();
+        String filenameStudent = "fisiere/Studenti.xml";
+        String filenameTema = "fisiere/Teme.xml";
+        String filenameNota = "fisiere/Note.xml";
+
+
+        StudentXMLRepo studentXMLRepository = new StudentXMLRepo(filenameStudent);
+        TemaXMLRepo temaXMLRepository = new TemaXMLRepo(filenameTema);
+        NotaValidator notaValidator = new NotaValidator(studentXMLRepository, temaXMLRepository);
+        NotaXMLRepo notaXMLRepository = new NotaXMLRepo(filenameNota);
+        Service service = new Service(studentXMLRepository, studentValidator, temaXMLRepository, temaValidator, notaXMLRepository, notaValidator);
+        boolean aux=true;
+        try {
+            Student st = new Student("106", "ana", 937,"");
+            Student res = service.addStudent(st);
+            System.out.println("st:" + st);
+            System.out.println("res:" + res);
+
+
+        }
+        catch(Exception e){
+            aux=false;
+        }
+        assertFalse(aux);
+    }
+
+    @Test
+    public void tc_10_addStudentIDValid() {
+
+        StudentValidator studentValidator = new StudentValidator();
+        TemaValidator temaValidator = new TemaValidator();
+        String filenameStudent = "fisiere/Studenti.xml";
+        String filenameTema = "fisiere/Teme.xml";
+        String filenameNota = "fisiere/Note.xml";
+
+        StudentXMLRepo studentXMLRepository = new StudentXMLRepo(filenameStudent);
+        TemaXMLRepo temaXMLRepository = new TemaXMLRepo(filenameTema);
+        NotaValidator notaValidator = new NotaValidator(studentXMLRepository, temaXMLRepository);
+        NotaXMLRepo notaXMLRepository = new NotaXMLRepo(filenameNota);
+        Service service = new Service(studentXMLRepository, studentValidator, temaXMLRepository, temaValidator, notaXMLRepository, notaValidator);
+
+        Student st= new Student("a","ana",937,"a@y.com");
+        Student res=service.addStudent(st);
+        System.out.println("st:"+st);
+        System.out.println("res:"+res);
+
+        assertEquals(res.getID(), st.getID());
+    }
+
+    @Test
+    public void tc_11_addStudentNameValid() {
+
+        StudentValidator studentValidator = new StudentValidator();
+        TemaValidator temaValidator = new TemaValidator();
+        String filenameStudent = "fisiere/Studenti.xml";
+        String filenameTema = "fisiere/Teme.xml";
+        String filenameNota = "fisiere/Note.xml";
+
+        StudentXMLRepo studentXMLRepository = new StudentXMLRepo(filenameStudent);
+        TemaXMLRepo temaXMLRepository = new TemaXMLRepo(filenameTema);
+        NotaValidator notaValidator = new NotaValidator(studentXMLRepository, temaXMLRepository);
+        NotaXMLRepo notaXMLRepository = new NotaXMLRepo(filenameNota);
+        Service service = new Service(studentXMLRepository, studentValidator, temaXMLRepository, temaValidator, notaXMLRepository, notaValidator);
+
+        Student st= new Student("200","a",937,"a@y.com");
+        Student res=service.addStudent(st);
+        System.out.println("st:"+st);
+        System.out.println("res:"+res);
+
+        assertEquals(res.getID(), st.getID());
+    }
+
+    @Test
+    public void tc_12_addStudentGroupInvalid() {
+
+        StudentValidator studentValidator = new StudentValidator();
+        TemaValidator temaValidator = new TemaValidator();
+        String filenameStudent = "fisiere/Studenti.xml";
+        String filenameTema = "fisiere/Teme.xml";
+        String filenameNota = "fisiere/Note.xml";
+
+
+        StudentXMLRepo studentXMLRepository = new StudentXMLRepo(filenameStudent);
+        TemaXMLRepo temaXMLRepository = new TemaXMLRepo(filenameTema);
+        NotaValidator notaValidator = new NotaValidator(studentXMLRepository, temaXMLRepository);
+        NotaXMLRepo notaXMLRepository = new NotaXMLRepo(filenameNota);
+        Service service = new Service(studentXMLRepository, studentValidator, temaXMLRepository, temaValidator, notaXMLRepository, notaValidator);
+        boolean aux=true;
+        try {
+            Student st = new Student("201", "ana", -1,"a@y.com");
+            Student res = service.addStudent(st);
+            System.out.println("st:" + st);
+            System.out.println("res:" + res);
+
+
+        }
+        catch(Exception e){
+            aux=false;
+        }
+        assertFalse(aux);
+    }
+
+    @Test
+    public void tc_13_addStudentGroupValid() {
+
+        StudentValidator studentValidator = new StudentValidator();
+        TemaValidator temaValidator = new TemaValidator();
+        String filenameStudent = "fisiere/Studenti.xml";
+        String filenameTema = "fisiere/Teme.xml";
+        String filenameNota = "fisiere/Note.xml";
+
+        StudentXMLRepo studentXMLRepository = new StudentXMLRepo(filenameStudent);
+        TemaXMLRepo temaXMLRepository = new TemaXMLRepo(filenameTema);
+        NotaValidator notaValidator = new NotaValidator(studentXMLRepository, temaXMLRepository);
+        NotaXMLRepo notaXMLRepository = new NotaXMLRepo(filenameNota);
+        Service service = new Service(studentXMLRepository, studentValidator, temaXMLRepository, temaValidator, notaXMLRepository, notaValidator);
+
+        Student st= new Student("202","ana",0,"a@y.com");
+        Student res=service.addStudent(st);
+        System.out.println("st:"+st);
+        System.out.println("res:"+res);
+
+        assertEquals(res.getID(), st.getID());
+    }
+
+    @Test
+    public void tc_14_addStudentGroupValid() {
+
+        StudentValidator studentValidator = new StudentValidator();
+        TemaValidator temaValidator = new TemaValidator();
+        String filenameStudent = "fisiere/Studenti.xml";
+        String filenameTema = "fisiere/Teme.xml";
+        String filenameNota = "fisiere/Note.xml";
+
+        StudentXMLRepo studentXMLRepository = new StudentXMLRepo(filenameStudent);
+        TemaXMLRepo temaXMLRepository = new TemaXMLRepo(filenameTema);
+        NotaValidator notaValidator = new NotaValidator(studentXMLRepository, temaXMLRepository);
+        NotaXMLRepo notaXMLRepository = new NotaXMLRepo(filenameNota);
+        Service service = new Service(studentXMLRepository, studentValidator, temaXMLRepository, temaValidator, notaXMLRepository, notaValidator);
+
+        Student st= new Student("203","ana",1,"a@y.com");
+        Student res=service.addStudent(st);
+        System.out.println("st:"+st);
+        System.out.println("res:"+res);
+
+        assertEquals(res.getID(), st.getID());
+    }
+
+    @Test
+    public void tc_15_addStudentGroupValid() {
+
+        StudentValidator studentValidator = new StudentValidator();
+        TemaValidator temaValidator = new TemaValidator();
+        String filenameStudent = "fisiere/Studenti.xml";
+        String filenameTema = "fisiere/Teme.xml";
+        String filenameNota = "fisiere/Note.xml";
+
+        StudentXMLRepo studentXMLRepository = new StudentXMLRepo(filenameStudent);
+        TemaXMLRepo temaXMLRepository = new TemaXMLRepo(filenameTema);
+        NotaValidator notaValidator = new NotaValidator(studentXMLRepository, temaXMLRepository);
+        NotaXMLRepo notaXMLRepository = new NotaXMLRepo(filenameNota);
+        Service service = new Service(studentXMLRepository, studentValidator, temaXMLRepository, temaValidator, notaXMLRepository, notaValidator);
+
+        Student st= new Student("204","ana", Integer.MAX_VALUE-1,"a@y.com");
+        Student res=service.addStudent(st);
+        System.out.println("st:"+st);
+        System.out.println("res:"+res);
+
+        assertEquals(res.getID(), st.getID());
+    }
+
+    @Test
+    public void tc_16_addStudentGroupValid() {
+
+        StudentValidator studentValidator = new StudentValidator();
+        TemaValidator temaValidator = new TemaValidator();
+        String filenameStudent = "fisiere/Studenti.xml";
+        String filenameTema = "fisiere/Teme.xml";
+        String filenameNota = "fisiere/Note.xml";
+
+        StudentXMLRepo studentXMLRepository = new StudentXMLRepo(filenameStudent);
+        TemaXMLRepo temaXMLRepository = new TemaXMLRepo(filenameTema);
+        NotaValidator notaValidator = new NotaValidator(studentXMLRepository, temaXMLRepository);
+        NotaXMLRepo notaXMLRepository = new NotaXMLRepo(filenameNota);
+        Service service = new Service(studentXMLRepository, studentValidator, temaXMLRepository, temaValidator, notaXMLRepository, notaValidator);
+
+        Student st= new Student("205","ana", Integer.MAX_VALUE,"a@y.com");
+        Student res=service.addStudent(st);
+        System.out.println("st:"+st);
+        System.out.println("res:"+res);
+
+        assertEquals(res.getID(), st.getID());
+    }
+
+    @Test
+    public void tc_17_addStudentEmailInvalid() {
+
+        StudentValidator studentValidator = new StudentValidator();
+        TemaValidator temaValidator = new TemaValidator();
+        String filenameStudent = "fisiere/Studenti.xml";
+        String filenameTema = "fisiere/Teme.xml";
+        String filenameNota = "fisiere/Note.xml";
+
+
+        StudentXMLRepo studentXMLRepository = new StudentXMLRepo(filenameStudent);
+        TemaXMLRepo temaXMLRepository = new TemaXMLRepo(filenameTema);
+        NotaValidator notaValidator = new NotaValidator(studentXMLRepository, temaXMLRepository);
+        NotaXMLRepo notaXMLRepository = new NotaXMLRepo(filenameNota);
+        Service service = new Service(studentXMLRepository, studentValidator, temaXMLRepository, temaValidator, notaXMLRepository, notaValidator);
+        boolean aux=true;
+        try {
+            Student st = new Student("206", "ana", -1,"@a.com");
+            Student res = service.addStudent(st);
+            System.out.println("st:" + st);
+            System.out.println("res:" + res);
+
+
+        }
+        catch(Exception e){
+            aux=false;
+        }
+        assertFalse(aux);
+    }
+
+    @Test
+    public void tc_18_addStudentEmailInvalid() {
+
+        StudentValidator studentValidator = new StudentValidator();
+        TemaValidator temaValidator = new TemaValidator();
+        String filenameStudent = "fisiere/Studenti.xml";
+        String filenameTema = "fisiere/Teme.xml";
+        String filenameNota = "fisiere/Note.xml";
+
+
+        StudentXMLRepo studentXMLRepository = new StudentXMLRepo(filenameStudent);
+        TemaXMLRepo temaXMLRepository = new TemaXMLRepo(filenameTema);
+        NotaValidator notaValidator = new NotaValidator(studentXMLRepository, temaXMLRepository);
+        NotaXMLRepo notaXMLRepository = new NotaXMLRepo(filenameNota);
+        Service service = new Service(studentXMLRepository, studentValidator, temaXMLRepository, temaValidator, notaXMLRepository, notaValidator);
+        boolean aux=true;
+        try {
+            Student st = new Student("207", "ana", -1,"a@.com");
+            Student res = service.addStudent(st);
+            System.out.println("st:" + st);
+            System.out.println("res:" + res);
+
+
+        }
+        catch(Exception e){
+            aux=false;
+        }
+        assertFalse(aux);
+    }
+
+    @Test
+    public void tc_19_addStudentEmailInvalid() {
+
+        StudentValidator studentValidator = new StudentValidator();
+        TemaValidator temaValidator = new TemaValidator();
+        String filenameStudent = "fisiere/Studenti.xml";
+        String filenameTema = "fisiere/Teme.xml";
+        String filenameNota = "fisiere/Note.xml";
+
+
+        StudentXMLRepo studentXMLRepository = new StudentXMLRepo(filenameStudent);
+        TemaXMLRepo temaXMLRepository = new TemaXMLRepo(filenameTema);
+        NotaValidator notaValidator = new NotaValidator(studentXMLRepository, temaXMLRepository);
+        NotaXMLRepo notaXMLRepository = new NotaXMLRepo(filenameNota);
+        Service service = new Service(studentXMLRepository, studentValidator, temaXMLRepository, temaValidator, notaXMLRepository, notaValidator);
+        boolean aux=true;
+        try {
+            Student st = new Student("208", "ana", -1,"a@a");
+            Student res = service.addStudent(st);
+            System.out.println("st:" + st);
+            System.out.println("res:" + res);
+
+
+        }
+        catch(Exception e){
+            aux=false;
+        }
+        assertFalse(aux);
+    }
+
+    @Test
+    public void tc_20_addStudentEmailInvalid() {
+
+        StudentValidator studentValidator = new StudentValidator();
+        TemaValidator temaValidator = new TemaValidator();
+        String filenameStudent = "fisiere/Studenti.xml";
+        String filenameTema = "fisiere/Teme.xml";
+        String filenameNota = "fisiere/Note.xml";
+
+
+        StudentXMLRepo studentXMLRepository = new StudentXMLRepo(filenameStudent);
+        TemaXMLRepo temaXMLRepository = new TemaXMLRepo(filenameTema);
+        NotaValidator notaValidator = new NotaValidator(studentXMLRepository, temaXMLRepository);
+        NotaXMLRepo notaXMLRepository = new NotaXMLRepo(filenameNota);
+        Service service = new Service(studentXMLRepository, studentValidator, temaXMLRepository, temaValidator, notaXMLRepository, notaValidator);
+        boolean aux=true;
+        try {
+            Student st = new Student("209", "ana", -1,"aa.com");
+            Student res = service.addStudent(st);
+            System.out.println("st:" + st);
+            System.out.println("res:" + res);
+
+
+        }
+        catch(Exception e){
+            aux=false;
+        }
+        assertFalse(aux);
+    }
+
+    @Test
+    public void tc_21_addStudentEmailInvalid() {
+
+        StudentValidator studentValidator = new StudentValidator();
+        TemaValidator temaValidator = new TemaValidator();
+        String filenameStudent = "fisiere/Studenti.xml";
+        String filenameTema = "fisiere/Teme.xml";
+        String filenameNota = "fisiere/Note.xml";
+
+
+        StudentXMLRepo studentXMLRepository = new StudentXMLRepo(filenameStudent);
+        TemaXMLRepo temaXMLRepository = new TemaXMLRepo(filenameTema);
+        NotaValidator notaValidator = new NotaValidator(studentXMLRepository, temaXMLRepository);
+        NotaXMLRepo notaXMLRepository = new NotaXMLRepo(filenameNota);
+        Service service = new Service(studentXMLRepository, studentValidator, temaXMLRepository, temaValidator, notaXMLRepository, notaValidator);
+        boolean aux=true;
+        try {
+            Student st = new Student("210", "ana", -1,"a@-y.com");
+            Student res = service.addStudent(st);
+            System.out.println("st:" + st);
+            System.out.println("res:" + res);
+
+
+        }
+        catch(Exception e){
+            aux=false;
+        }
+        assertFalse(aux);
+    }
+
+    @Test
+    public void tc_22_addStudentEmailInvalid() {
+
+        StudentValidator studentValidator = new StudentValidator();
+        TemaValidator temaValidator = new TemaValidator();
+        String filenameStudent = "fisiere/Studenti.xml";
+        String filenameTema = "fisiere/Teme.xml";
+        String filenameNota = "fisiere/Note.xml";
+
+
+        StudentXMLRepo studentXMLRepository = new StudentXMLRepo(filenameStudent);
+        TemaXMLRepo temaXMLRepository = new TemaXMLRepo(filenameTema);
+        NotaValidator notaValidator = new NotaValidator(studentXMLRepository, temaXMLRepository);
+        NotaXMLRepo notaXMLRepository = new NotaXMLRepo(filenameNota);
+        Service service = new Service(studentXMLRepository, studentValidator, temaXMLRepository, temaValidator, notaXMLRepository, notaValidator);
+        boolean aux=true;
+        try {
+            Student st = new Student("211", "ana", -1,".com@y.com");
+            Student res = service.addStudent(st);
+            System.out.println("st:" + st);
+            System.out.println("res:" + res);
+
+
+        }
+        catch(Exception e){
+            aux=false;
+        }
+        assertFalse(aux);
+    }
 }
