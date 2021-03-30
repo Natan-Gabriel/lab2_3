@@ -1,6 +1,8 @@
 package app;
 
 import domain.Student;
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import repository.NotaXMLRepo;
 import repository.StudentXMLRepo;
@@ -10,9 +12,21 @@ import validation.NotaValidator;
 import validation.StudentValidator;
 import validation.TemaValidator;
 
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+
 import static org.junit.Assert.*;
 
 public class MainApplicationTest {
+
+    @BeforeClass
+    public static void setup() throws FileNotFoundException {
+        PrintWriter writer = new PrintWriter("fisiere/Studenti.xml");
+        writer.write("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?><inbox></inbox>");
+        writer.close();
+    }
+
+
 
     @Test
     public void tc_1_addStudentValid() {
