@@ -26,38 +26,11 @@ public class MainApplication_WBT {
         writer.close();
     }
 
-    @Test
-    public void tc_1_addTemaIDInvalid() {
 
-        StudentValidator studentValidator = new StudentValidator();
-        TemaValidator temaValidator = new TemaValidator();
-        String filenameStudent = "fisiere/Studenti.xml";
-        String filenameTema = "fisiere/Teme.xml";
-        String filenameNota = "fisiere/Note.xml";
-
-
-        StudentXMLRepo studentXMLRepository = new StudentXMLRepo(filenameStudent);
-        TemaXMLRepo temaXMLRepository = new TemaXMLRepo(filenameTema);
-        NotaValidator notaValidator = new NotaValidator(studentXMLRepository, temaXMLRepository);
-        NotaXMLRepo notaXMLRepository = new NotaXMLRepo(filenameNota);
-        Service service = new Service(studentXMLRepository, studentValidator, temaXMLRepository, temaValidator, notaXMLRepository, notaValidator);
-        boolean aux=true;
-        try {
-            Tema t = new Tema(null, "descriere", 2, 2);
-            Tema nt = service.addTema(t);
-            System.out.println("t:" + t);
-            System.out.println("nt:" + nt);
-        }
-	    catch(Exception e){
-                aux=false;
-        }
-
-        assertFalse(aux);
-    }
 
 
     @Test
-    public void tc_2_addTemaValid() {
+    public void tc_1_addTemaValid() {
 
         StudentValidator studentValidator = new StudentValidator();
         TemaValidator temaValidator = new TemaValidator();
@@ -71,7 +44,7 @@ public class MainApplication_WBT {
         NotaXMLRepo notaXMLRepository = new NotaXMLRepo(filenameNota);
         Service service = new Service(studentXMLRepository, studentValidator, temaXMLRepository, temaValidator, notaXMLRepository, notaValidator);
 
-        Tema tema= new Tema("1","description",12,11);
+        Tema tema= new Tema("0","descriere",2,2);
         Tema res=service.addTema(tema);
         System.out.println("tema:"+tema);
         System.out.println("res:"+res);
@@ -81,7 +54,34 @@ public class MainApplication_WBT {
     }
 
     @Test
-    public void tc_3_addTemaDescriptionInvalid() {
+    public void tc_2_addTemaDuplicateID() {
+
+        StudentValidator studentValidator = new StudentValidator();
+        TemaValidator temaValidator = new TemaValidator();
+        String filenameStudent = "fisiere/Studenti.xml";
+        String filenameTema = "fisiere/Teme.xml";
+        String filenameNota = "fisiere/Note.xml";
+
+
+        StudentXMLRepo studentXMLRepository = new StudentXMLRepo(filenameStudent);
+        TemaXMLRepo temaXMLRepository = new TemaXMLRepo(filenameTema);
+        NotaValidator notaValidator = new NotaValidator(studentXMLRepository, temaXMLRepository);
+        NotaXMLRepo notaXMLRepository = new NotaXMLRepo(filenameNota);
+        Service service = new Service(studentXMLRepository, studentValidator, temaXMLRepository, temaValidator, notaXMLRepository, notaValidator);
+        boolean aux=true;
+        Tema t = new Tema("1", "alta descriere", 3, 3);
+        Tema nt = service.addTema(t);
+        Tema t2 = new Tema("1", "alta descriere", 3, 3);
+        Tema nt2 = service.addTema(t2);
+        System.out.println("t:" + t);
+        System.out.println("nt:" + nt);
+        System.out.println("t2:" + t2);
+        System.out.println("nt2:" + nt2);
+        assertNotNull(nt2);
+    }
+
+    @Test
+    public void tc_3_addTemaIDInvalid() {
 
         StudentValidator studentValidator = new StudentValidator();
         TemaValidator temaValidator = new TemaValidator();
@@ -97,7 +97,7 @@ public class MainApplication_WBT {
         Service service = new Service(studentXMLRepository, studentValidator, temaXMLRepository, temaValidator, notaXMLRepository, notaValidator);
         boolean aux=true;
         try {
-            Tema t = new Tema("2", "", 2, 2);
+            Tema t = new Tema(null, "descriere", 3, 3);
             Tema nt = service.addTema(t);
             System.out.println("t:" + t);
             System.out.println("nt:" + nt);
@@ -110,7 +110,7 @@ public class MainApplication_WBT {
     }
 
     @Test
-    public void tc_4_addTemaDeadlineInvalid() {
+    public void tc_4_addTemaDescriptionInvalid() {
 
         StudentValidator studentValidator = new StudentValidator();
         TemaValidator temaValidator = new TemaValidator();
@@ -126,7 +126,36 @@ public class MainApplication_WBT {
         Service service = new Service(studentXMLRepository, studentValidator, temaXMLRepository, temaValidator, notaXMLRepository, notaValidator);
         boolean aux=true;
         try {
-            Tema t = new Tema("3", "description", 15, 2);
+            Tema t = new Tema("2", "", 3, 3);
+            Tema nt = service.addTema(t);
+            System.out.println("t:" + t);
+            System.out.println("nt:" + nt);
+        }
+        catch(Exception e){
+            aux=false;
+        }
+
+        assertFalse(aux);
+    }
+
+    @Test
+    public void tc_5_addTemaDeadlineInvalid() {
+
+        StudentValidator studentValidator = new StudentValidator();
+        TemaValidator temaValidator = new TemaValidator();
+        String filenameStudent = "fisiere/Studenti.xml";
+        String filenameTema = "fisiere/Teme.xml";
+        String filenameNota = "fisiere/Note.xml";
+
+
+        StudentXMLRepo studentXMLRepository = new StudentXMLRepo(filenameStudent);
+        TemaXMLRepo temaXMLRepository = new TemaXMLRepo(filenameTema);
+        NotaValidator notaValidator = new NotaValidator(studentXMLRepository, temaXMLRepository);
+        NotaXMLRepo notaXMLRepository = new NotaXMLRepo(filenameNota);
+        Service service = new Service(studentXMLRepository, studentValidator, temaXMLRepository, temaValidator, notaXMLRepository, notaValidator);
+        boolean aux=true;
+        try {
+            Tema t = new Tema("3", "descriere", -1, 3);
             Tema nt = service.addTema(t);
             System.out.println("t:" + t);
             System.out.println("nt:" + nt);
@@ -138,7 +167,7 @@ public class MainApplication_WBT {
         assertFalse(aux);
     }
     @Test
-    public void tc_3_addTemaPrimireInvalid() {
+    public void tc_6_addTemaPrimireInvalid() {
 
         StudentValidator studentValidator = new StudentValidator();
         TemaValidator temaValidator = new TemaValidator();
@@ -154,7 +183,7 @@ public class MainApplication_WBT {
         Service service = new Service(studentXMLRepository, studentValidator, temaXMLRepository, temaValidator, notaXMLRepository, notaValidator);
         boolean aux=true;
         try {
-            Tema t = new Tema("2", "", 2, 15);
+            Tema t = new Tema("4", "descriere", 3, 16);
             Tema nt = service.addTema(t);
             System.out.println("t:" + t);
             System.out.println("nt:" + nt);
@@ -165,4 +194,6 @@ public class MainApplication_WBT {
 
         assertFalse(aux);
     }
+
+
 }
