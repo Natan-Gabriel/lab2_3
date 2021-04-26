@@ -52,3 +52,39 @@ Nota: 8.0
 Predata in saptamana: 8
 Deadline: 8
 Feedback: feedback
+
+Tema: 100
+Nota: 7.5
+Predata in saptamana: 13
+Deadline: 12
+Feedback: sa
+
+Tema: 100
+Nota: 10.0
+Predata in saptamana: 12
+Deadline: 12
+Feedback: da
+
+Tema: 100
+Nota: 9.55
+Predata in saptamana: 12
+Deadline: 12
+Feedback: da
+
+Tema: 100
+Nota: 10.0
+Predata in saptamana: 12
+Deadline: 12
+Feedback: 
+
+Tema: 400
+Nota: 8.0
+Predata in saptamana: 8
+Deadline: 8
+Feedback: feedback
+
+Tema: 400
+Nota: 8.0
+Predata in saptamana: 8
+Deadline: 8
+Feedback: feedback

@@ -134,4 +134,90 @@ public class MainApplication_BigBang {
         //TODO assertNull(res3);
         assertEquals((double)res3, 8.0, 0);
     }
+
+
+    @Test
+    public void tc_5_addStudentValid() {
+
+        StudentValidator studentValidator = new StudentValidator();
+        TemaValidator temaValidator = new TemaValidator();
+        String filenameStudent = "fisiere/Studenti.xml";
+        String filenameTema = "fisiere/Teme.xml";
+        String filenameNota = "fisiere/Note.xml";
+
+        StudentXMLRepo studentXMLRepository = new StudentXMLRepo(filenameStudent);
+        TemaXMLRepo temaXMLRepository = new TemaXMLRepo(filenameTema);
+        NotaValidator notaValidator = new NotaValidator(studentXMLRepository, temaXMLRepository);
+        NotaXMLRepo notaXMLRepository = new NotaXMLRepo(filenameNota);
+        Service service = new Service(studentXMLRepository, studentValidator, temaXMLRepository, temaValidator, notaXMLRepository, notaValidator);
+
+        Student st= new Student("201","201",937,"a@yahoo.com");
+        Student res=service.addStudent(st);
+        System.out.println("st:"+st);
+        System.out.println("res:"+res);
+
+        //assertEquals(res.getID(), st.getID());
+        assertNotNull(service.findStudent(st.getID()));
+    }
+
+    @Test
+    public void tc_6_addStudentAndAssignmentValid() {
+        StudentValidator studentValidator = new StudentValidator();
+        TemaValidator temaValidator = new TemaValidator();
+        String filenameStudent = "fisiere/Studenti.xml";
+        String filenameTema = "fisiere/Teme.xml";
+        String filenameNota = "fisiere/Note.xml";
+
+        StudentXMLRepo studentXMLRepository = new StudentXMLRepo(filenameStudent);
+        TemaXMLRepo temaXMLRepository = new TemaXMLRepo(filenameTema);
+        NotaValidator notaValidator = new NotaValidator(studentXMLRepository, temaXMLRepository);
+        NotaXMLRepo notaXMLRepository = new NotaXMLRepo(filenameNota);
+        Service service = new Service(studentXMLRepository, studentValidator, temaXMLRepository, temaValidator, notaXMLRepository, notaValidator);
+
+        Student st= new Student("203","203",937,"a@yahoo.com");
+        Student res=service.addStudent(st);
+
+        Tema tema= new Tema("0","descriere",2,2);
+        Tema res1=service.addTema(tema);
+        System.out.println("tema:"+tema);
+        System.out.println("res:"+res);
+
+        //assertEquals(res.getID(), st.getID());
+        assertNotNull(service.findStudent(st.getID()));
+        assertNotNull(service.findTema(tema.getID()));
+    }
+
+    @Test
+    public void tc_7_addStudentAndAssignmentAndGrade() {
+        StudentValidator studentValidator = new StudentValidator();
+        TemaValidator temaValidator = new TemaValidator();
+        String filenameStudent = "fisiere/Studenti.xml";
+        String filenameTema = "fisiere/Teme.xml";
+        String filenameNota = "fisiere/Note.xml";
+
+        StudentXMLRepo studentXMLRepository = new StudentXMLRepo(filenameStudent);
+        TemaXMLRepo temaXMLRepository = new TemaXMLRepo(filenameTema);
+        NotaValidator notaValidator = new NotaValidator(studentXMLRepository, temaXMLRepository);
+        NotaXMLRepo notaXMLRepository = new NotaXMLRepo(filenameNota);
+        Service service = new Service(studentXMLRepository, studentValidator, temaXMLRepository, temaValidator, notaXMLRepository, notaValidator);
+
+        Student st= new Student("203","203",937,"a@yahoo.com");
+        Student res=service.addStudent(st);
+
+        Tema tema= new Tema("203","203",8,8);
+        Tema res2=service.addTema(tema);
+
+        Nota nota = new Nota("203", "203", "203", 8, LocalDate.of(2021, 4, 13));
+        Double res3 = service.addNota(nota, "feedback");
+
+
+        //TODO assertNull(res3);
+        assertNotNull(service.findNota(nota.getID()));
+        assertEquals(service.findNota("203"), nota);
+
+    }
+
+
+
+
 }
